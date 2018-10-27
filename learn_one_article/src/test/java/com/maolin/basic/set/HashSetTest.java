@@ -4,7 +4,6 @@ import com.maolin.generic.Demo;
 import org.junit.Test;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -61,5 +60,20 @@ public class HashSetTest {
 
         list1.forEach(System.out::println);
         list2.forEach(System.out::println);
+    }
+
+    @Test
+    public void testSetCloneAndRemove(){
+        Set<String> list1 = new HashSet<>();
+        list1.add("张三");
+        list1.add("李四");
+        list1.add("王五");
+
+        Set<String> clone = new HashSet<>();
+        clone.addAll(list1);
+        list1.removeAll(clone);
+
+        System.out.println(clone.toString());
+        System.out.println(list1.toString());
     }
 }

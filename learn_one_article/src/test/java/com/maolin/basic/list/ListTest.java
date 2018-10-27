@@ -4,7 +4,9 @@ import com.maolin.entity.PwInfo;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author zhangmaolin
@@ -19,6 +21,13 @@ public class ListTest {
         for (String s : list) {
             System.out.println(s);
         }
+    }
+    @Test
+    public void testSet(){
+        Set<String> set = new HashSet<>();
+        set.add("你好");
+        set.add("zhangmaol");
+        System.out.println(set);
     }
 
     private List<String> getList() {

@@ -14,6 +14,12 @@ public class StringTest {
         System.out.println(substring);
 
     }
+    @Test
+    public void testSubString2(){
+        String ss = "nihao zhangmaolin";
+        String sub = ss.substring(0, ss.lastIndexOf(" "));
+        System.out.println(sub);
+    }
 
     /**
      * 声明a变量
