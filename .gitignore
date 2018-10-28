@@ -1,3 +1,2 @@
-learn_one_article/.idea/
-*.iml
-learn_one_article/target/
+/target/
+/.idea/
