@@ -142,11 +142,29 @@ public class PatternTest {
     }
 
     @Test
-    public void testMatch4(){
+    public void testMatch4() {
         String value = "show ip bgp community exact-match no-advertise no-export exact-match \n" +
                 "GPN710A>show ip bgp community exact-match no-advertise no";
-        String s = value.substring(0, value.lastIndexOf(">")+1);
+        String s = value.substring(0, value.lastIndexOf(">") + 1);
         System.out.println(s);
+        String ss = "show ip bgp community exact-match no-advertise";
+        int i = value.lastIndexOf(">");
+        System.out.println(i);
+        int length = ss.length();
+        System.out.println("ss.length:" + length);
+        String substring1 = value.substring(i + 1);
+        System.out.println(substring1.length());
+        System.out.println(substring1);
+        System.out.println(value.length());
+        String substring = value.substring(i + 1, i + length + 1);
+        System.out.println(substring);
+    }
+
+    @Test
+    public void testReplace(){
+        String value = "nihao value value nihao nihao value";
+        String nihao = value.replace("nihao", "");
+        System.out.println(nihao);
     }
 }
 
