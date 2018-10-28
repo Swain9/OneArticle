@@ -141,5 +141,15 @@ public class PatternTest {
         cmdSet.forEach(System.out::print);
     }
 
-
+    @Test
+    public void testMatch4(){
+        String value = "show ip bgp community exact-match no-advertise no-export exact-match \n" +
+                "GPN710A>show ip bgp community exact-match no-advertise no";
+        String s = value.substring(0, value.lastIndexOf(">")+1);
+        System.out.println(s);
+    }
 }
+
+
+
+
