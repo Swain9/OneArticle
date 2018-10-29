@@ -148,6 +148,14 @@ public class PatternTest {
         String s = value.substring(0, value.lastIndexOf(">")+1);
         System.out.println(s);
     }
+
+    @Test
+    public void testMatcher5(){
+        String value = "GPN710A>";
+        boolean matches = value.matches("\\S*[>#]");
+        System.out.println(matches);
+    }
+
 }
 
 
