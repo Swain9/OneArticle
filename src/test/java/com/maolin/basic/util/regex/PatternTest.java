@@ -174,6 +174,57 @@ public class PatternTest {
         System.out.println(matches);
     }
 
+    @Test
+    public void testMatcher6(){
+        String value = "张三1990-01-10,20岁";
+        Pattern pattern = Pattern.compile("(\\S*)((\\d{4})-(\\d{2})-(\\d{2})),(\\d*)岁");
+        Matcher matcher = pattern.matcher(value);
+        if (matcher.find()) {
+            System.out.println(matcher.group(0));
+            System.out.println(matcher.group(1));
+            System.out.println(matcher.group(2));
+            System.out.println(matcher.group(3));
+            System.out.println(matcher.group(4));
+            System.out.println(matcher.group(5));
+            System.out.println(matcher.group(6));
+            System.out.println(matcher.group(7));
+        }
+    }
+
+    /**
+     * 正则查找
+     */
+    @Test
+    public void testMatcher7(){
+        String value = "张三1990-01-10,20岁";
+        Pattern pattern = Pattern.compile("((\\d{4})-(\\d{2})-(\\d{2}))");
+        Matcher matcher = pattern.matcher(value);
+        if (matcher.find()) {
+            System.out.println(matcher.group(0));
+            System.out.println(matcher.group(1));
+            System.out.println(matcher.group(2));
+            System.out.println(matcher.group(3));
+            System.out.println(matcher.group(4));
+            //System.out.println(matcher.group(5));
+        }
+        if (matcher.matches()) {
+            System.out.println("匹配到了");
+        }
+    }
+
+    /**
+     * https://blog.csdn.net/thewindkee/article/details/52785763
+     */
+    @Test
+    public void testMatcher8(){
+        String value = "CX600-D8";
+        Pattern pattern = Pattern.compile("(?i)^(CX600)((?!-M8).*)$");
+        Matcher matcher = pattern.matcher(value);
+        if (matcher.matches()) {
+            System.out.println("匹配到了");
+        }
+    }
+
 }
 
 
