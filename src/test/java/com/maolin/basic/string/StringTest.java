@@ -43,4 +43,12 @@ public class StringTest {
         list2.forEach(System.out::println);
     }
 
+    @Test
+    public void testEquelt(){
+        String a = "#";
+        String b = "#";
+        System.out.println(a.equals(b));
+
+    }
+
 }

@@ -16,6 +16,15 @@ import java.util.Set;
 public class ListTest {
 
     @Test
+    public void testNull(){
+        ListTest listTest = new ListTest();
+        List<String> list = listTest.getList();
+        for (String s : list) {
+            System.out.println(s);
+        }
+    }
+
+    @Test
     public void testListForEach() {
         List<String> list = getList();
         for (String s : list) {

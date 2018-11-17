@@ -1,4 +1,4 @@
-package com.maolin.basic.util.regex;
+package com.maolin.basic.pattern;
 
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
  */
-public class PatternTest {
+public class PatternTest2 {
 
     @Test
     public void testMatch() {
@@ -161,21 +161,21 @@ public class PatternTest {
     }
 
     @Test
-    public void testReplace(){
+    public void testReplace() {
         String value = "nihao value value nihao nihao value";
         String nihao = value.replace("nihao", "");
         System.out.println(nihao);
     }
 
     @Test
-    public void testMatcher5(){
+    public void testMatcher5() {
         String value = "GPN710A>";
         boolean matches = value.matches("\\S*[>#]");
         System.out.println(matches);
     }
 
     @Test
-    public void testMatcher6(){
+    public void testMatcher6() {
         String value = "张三1990-01-10,20岁";
         Pattern pattern = Pattern.compile("(\\S*)((\\d{4})-(\\d{2})-(\\d{2})),(\\d*)岁");
         Matcher matcher = pattern.matcher(value);
@@ -195,7 +195,7 @@ public class PatternTest {
      * 正则查找
      */
     @Test
-    public void testMatcher7(){
+    public void testMatcher7() {
         String value = "张三1990-01-10,20岁";
         Pattern pattern = Pattern.compile("((\\d{4})-(\\d{2})-(\\d{2}))");
         Matcher matcher = pattern.matcher(value);
@@ -216,12 +216,33 @@ public class PatternTest {
      * https://blog.csdn.net/thewindkee/article/details/52785763
      */
     @Test
-    public void testMatcher8(){
+    public void testMatcher8() {
         String value = "CX600-D8";
         Pattern pattern = Pattern.compile("(?i)^(CX600)((?!-M8).*)$");
         Matcher matcher = pattern.matcher(value);
         if (matcher.matches()) {
             System.out.println("匹配到了");
+        }
+    }
+
+    @Test
+    public void testMatcher9() {
+        String value = "张三 18 2018-10-01\n李四 22 2010-11-11\n王五 88 2000-01-02\nEnd   time: 2018-02-06 18:46:57";
+//        String value = "张三 18 2018-10-01\n李四 22 2010-11-11\n王五 88 2000-01-02\n   End   time: --";
+        Pattern pattern = Pattern.compile("([\\u4e00-\\u9fa5]+) (\\d+) (\\d{4}-\\d{1,2}-\\d{1,2})");
+        Matcher matcher = pattern.matcher(value);
+        while (matcher.find()) {
+            System.out.print("姓名：" + matcher.group(1));
+            System.out.print("，年龄：" + matcher.group(2));
+            System.out.print("，注册时间：" + matcher.group(3));
+            System.out.println("");
+        }
+        Pattern endTime = Pattern.compile("(?i)End\\s+time:\\s+--");
+        Matcher endMacher = endTime.matcher(value);
+        if (endMacher.find()) {
+            System.out.println("未完成");
+        }else{
+            System.out.println("已完成");
         }
     }
 
