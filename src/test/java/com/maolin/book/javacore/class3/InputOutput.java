@@ -37,8 +37,8 @@ public class InputOutput extends PrintUtil {
         String name = in.nextLine(); //获取一行
         print(name);
         print("你的名字是什么？");
-        String fistrName = in.next();//读取第一个单词（空白符隔开的第一个连续字符串）
-        print(fistrName);
+        String firstName = in.next();//读取第一个单词（空白符隔开的第一个连续字符串）
+        print(firstName);
         print("你多大了？");
         int age = in.nextInt();//读取下一个整数
         print(age);

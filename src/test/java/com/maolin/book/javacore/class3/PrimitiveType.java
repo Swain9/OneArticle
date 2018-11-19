@@ -109,7 +109,7 @@ public class PrimitiveType extends PrintUtil {
         print(" \u0008 === \b"); //退格符
         print(" \u0009 === \t"); //制表符
         print(" "+\u000a"\\u000a === \n"); //换行符
-        print(" "+\u000d"\\u000d === \n"); //回车符
+        print(" "+\u000d"\\u000d === \r"); //回车符
         print(\u0022\\u0022 === \""); //双引号
         print("\u0027 === \'"); //单引号
         print("\\u005c === \\"); //反斜杠
