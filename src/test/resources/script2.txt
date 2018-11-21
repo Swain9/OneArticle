@@ -1,0 +1,57 @@
+sys
+vsi eptree
+ mtu 2000
+ pwsignal ldp
+  vsi-id 100
+  control-word enable
+  mac-withdraw enable
+  <JavaScript>
+  	function getScript(paramMap){
+  		var SCRIPT = '';
+  		var COMMANDS = new Array();
+
+  		//直接打印paramMap
+  		print("paramMap的数据为："+paramMap);
+  		print("paramMap的类型为："+typeof paramMap);
+
+        //如果是map类型，那么就不会循环执行
+  		for(var i=0;i<paramMap.length;i++){
+  		    print("=============");
+  		    print(paramMap[i]);
+  		     print("=============");
+  		}
+
+  		//得到outbean对象
+  		print("paramMap的outbean对象属性为："+paramMap.outbean);
+  		//outbean对象下面的属性
+  		print("paramMap的outbean对象的子属性为："+paramMap.outbean.getName());
+
+        //得到inbean对象，发现无法读取
+        print("paramMap的inbean对象属性为："+paramMap.inbean);
+        //inbean对象下面的属性，无法调用方法，包没有访问权限
+        print("paramMap的inbean对象的子属性为："+paramMap.inbean.getName);
+
+        //参数变为全局参数？然而并没有，必须加上paramMap
+        print(paramMap.name);
+        print(paramMap.age);
+
+
+  		//以下废弃
+  		var list = paramMap.get("outbean");
+  		print(paramMap.get("name"));
+  		print(paramMap.get("age"));
+  		print(list);
+  		print(typeof list);
+  		for(var field in list){
+  		    print(list[field]);
+  		}
+
+  		print(list[0]);
+  		print(list.toString());
+  		print(list['name']);
+
+  		SCRIPT = COMMANDS.join('\r\n');
+  		return SCRIPT;
+  	}
+  </JavaScript>
+ encapsulation ethernet

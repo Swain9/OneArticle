@@ -1,0 +1,38 @@
+sys
+vsi eptree
+ mtu 2000
+ pwsignal ldp
+  vsi-id 100
+  control-word enable
+  mac-withdraw enable
+  <JavaScript>
+  	function getScript(paramMap){
+  		var SCRIPT = '';
+  		var COMMANDS = new Array();
+
+  		print(paramMap);
+
+  		print('paramMap的长度为：'+paramMap.length);
+  		print('paramMap的长度不为数字：'+isNaN(paramMap.length));
+  		//如果为true，则表示为数组
+  		print(typeof paramMap === 'object' && !isNaN(paramMap.length));
+
+  		for(var i = 0;i<paramMap.length;i++){
+  		    print('==================');
+
+  		    var obj = paramMap[i];
+  		    print('第'+(i+1)+'个对象的长度为：'+obj.length);
+  		    print('Obj对象属性length的类型为：'+typeof obj.length);
+  		    print('第'+(i+1)+'个对象的长度不为数字：'+isNaN(obj.length));
+  		    print(typeof obj === 'object' && !isNaN(obj.length));
+  		    print(paramMap[i]);
+
+  		    print(obj.name);
+  		    print(paramMap[i].name);
+  		}
+
+  		SCRIPT = COMMANDS.join('\r\n');
+  		return SCRIPT;
+  	}
+  </JavaScript>
+ encapsulation ethernet

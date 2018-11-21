@@ -1,0 +1,24 @@
+sys
+vsi eptree
+ mtu 2000
+ pwsignal ldp
+  vsi-id 100
+  control-word enable
+  mac-withdraw enable
+  <JavaScript>
+  	function getScript(paramMap){
+  		var SCRIPT = '';
+  		var COMMANDS = new Array();
+  		for(var i = 0;i<paramMap.length;i++){
+  			var obj = paramMap[i];
+  			print(obj);
+  			COMMANDS.push('peer '+obj.neId+' negotiation-vc-id '+obj.vcId+' static-upe trans '+obj.aPwId+' recv '+obj.zPwId);
+            COMMANDS.push('peer '+obj.neId+' negotiation-vc-id '+obj.vcId+' pw '+obj.zPwId);
+            COMMANDS.push('control-word enable');
+            COMMANDS.push('bfd-detect detect-multiplier 4 min-rx-interval 20 min-tx-interval 20');
+  		}
+  		SCRIPT = COMMANDS.join('\r\n');
+  		return SCRIPT;
+  	}
+  </JavaScript>
+ encapsulation ethernet
