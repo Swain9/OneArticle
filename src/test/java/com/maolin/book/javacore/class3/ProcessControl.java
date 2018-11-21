@@ -67,6 +67,9 @@ public class ProcessControl extends PrintUtil {
 
     /**
      * 3.8.6 中断控制流程语句
+     * break：中断循环，执行循环后面的代码
+     * continue：中断循环，执行下一次循环
+     * return：中断所有代码，有返回值就返回
      */
     @Test
     public void test3() {
