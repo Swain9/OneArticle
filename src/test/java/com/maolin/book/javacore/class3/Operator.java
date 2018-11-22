@@ -1,6 +1,6 @@
 package com.maolin.book.javacore.class3;
 
-import com.maolin.book.javacore.PrintUtil;
+import com.maolin.book.javacore.UsefulUtil;
 import org.junit.Test;
 
 /**
@@ -10,7 +10,7 @@ import org.junit.Test;
  * @date 2018-11-17 20:33
  * @since 0.0.1
  */
-public class Operator extends PrintUtil {
+public class Operator extends UsefulUtil {
 
     /**
      * +，-，*，/，%

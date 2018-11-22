@@ -1,6 +1,6 @@
 package com.maolin.book.javacore.class3;
 
-import com.maolin.book.javacore.PrintUtil;
+import com.maolin.book.javacore.UsefulUtil;
 import org.junit.Test;
 
 /**
@@ -10,7 +10,7 @@ import org.junit.Test;
  * @date 2018-11-18 13:10
  * @since 0.0.1
  */
-public class StringCode extends PrintUtil {
+public class StringCode extends UsefulUtil {
 
     /**
      * java字符串就是Unicode字符串序列，例如串”Java\u2122“，由5个Unicode字符：J，a，v，a和™

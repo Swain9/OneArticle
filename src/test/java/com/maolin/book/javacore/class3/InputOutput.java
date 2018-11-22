@@ -1,6 +1,6 @@
 package com.maolin.book.javacore.class3;
 
-import com.maolin.book.javacore.PrintUtil;
+import com.maolin.book.javacore.UsefulUtil;
 import org.junit.Test;
 
 import java.io.Console;
@@ -19,7 +19,7 @@ import java.util.Scanner;
  * @date 2018-11-18 15:46
  * @since 0.0.1
  */
-public class InputOutput extends PrintUtil {
+public class InputOutput extends UsefulUtil {
 
     /**
      * 3.7.1 读取输入

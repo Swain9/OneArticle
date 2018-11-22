@@ -1,6 +1,6 @@
 package com.maolin.book.javacore.class3;
 
-import com.maolin.book.javacore.PrintUtil;
+import com.maolin.book.javacore.UsefulUtil;
 import org.junit.Test;
 
 /**
@@ -10,7 +10,7 @@ import org.junit.Test;
  * @date 2018-11-17 19:54
  * @since 0.0.1
  */
-public class Variable extends PrintUtil {
+public class Variable extends UsefulUtil {
 
     /**
      * java的变量名必须以 字母开头， 并由字母和数字构成的序列。

@@ -1,6 +1,6 @@
 package com.maolin.book.javacore.class3;
 
-import com.maolin.book.javacore.PrintUtil;
+import com.maolin.book.javacore.UsefulUtil;
 import org.junit.Test;
 
 /**
@@ -12,7 +12,7 @@ import org.junit.Test;
  * @version 1.0.0
  * @since 2018-11-19 10:22
  */
-public class ProcessControl extends PrintUtil {
+public class ProcessControl extends UsefulUtil {
 
     /**
      * 3.8.1 块作用域（block）
