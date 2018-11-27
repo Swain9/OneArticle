@@ -123,5 +123,9 @@ public class Configurable {
         initAutoImportsMap();
         initAutoIncludesList();
     }
-
+    public void setTemplateExceptionHandler(TemplateExceptionHandler templateExceptionHandler) {
+        NullArgumentException.check("templateExceptionHandler", templateExceptionHandler);
+        this.templateExceptionHandler = templateExceptionHandler;
+        properties.setProperty(TEMPLATE_EXCEPTION_HANDLER_KEY, templateExceptionHandler.getClass().getName());
+    }
 }

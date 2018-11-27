@@ -27,5 +27,10 @@ public interface TemplateExceptionHandler {
             throw te;
         }
     };
-
+    TemplateExceptionHandler RETHROW_HANDLER = new TemplateExceptionHandler() {
+        public void handleTemplateException(TemplateException te, Environment env, Writer out)
+                throws TemplateException {
+            throw te;
+        }
+    };
 }

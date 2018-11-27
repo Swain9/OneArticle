@@ -1,7 +1,10 @@
 package com.maolin.myfree.template;
 
+import com.maolin.myfree.cache.TemplateCache;
+import com.maolin.myfree.cache.TemplateLoader;
 import com.maolin.myfree.core.Configurable;
 import com.maolin.myfree.core.ParserConfiguration;
+import com.maolin.myfree.template.utility.SecurityUtilities;
 
 import java.util.Locale;
 import java.util.TimeZone;
@@ -25,6 +28,39 @@ public class Configuration extends Configurable implements Cloneable, ParserConf
 
         createTemplateCache();
         loadBuiltInSharedVariables();
+    }
+
+    private String defaultEncoding = getDefaultDefaultEncoding();
+    static private String getDefaultDefaultEncoding() {
+        return getJVMDefaultEncoding();
+    }
+    static private String getJVMDefaultEncoding() {
+        return SecurityUtilities.getSystemProperty("file.encoding", "utf-8");
+    }
+    private boolean defaultEncodingExplicitlySet;
+    public void setDefaultEncoding(String encoding) {
+        defaultEncoding = encoding;
+        defaultEncodingExplicitlySet = true;
+    }
+
+    private boolean templateExceptionHandlerExplicitlySet;
+    @Override
+    public void setTemplateExceptionHandler(TemplateExceptionHandler templateExceptionHandler) {
+        super.setTemplateExceptionHandler(templateExceptionHandler);
+        templateExceptionHandlerExplicitlySet = true;
+    }
+
+    private TemplateCache cache;
+    public void setTemplateLoader(TemplateLoader templateLoader) {
+        // "synchronized" is removed from the API as it's not safe to set anything after publishing the Configuration
+        synchronized (this) {
+            if (cache.getTemplateLoader() != templateLoader) {
+                recreateTemplateCacheWith(templateLoader, cache.getCacheStorage(),
+                        cache.getTemplateLookupStrategy(), cache.getTemplateNameFormat(),
+                        cache.getTemplateConfigurations());
+            }
+            templateLoaderExplicitlySet = true;
+        }
     }
 
     static Locale getDefaultLocale() {
