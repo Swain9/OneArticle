@@ -111,4 +111,11 @@ public class ListTest {
         return false;
     }
 
+    @Test
+    public void listaddnull(){
+        List<String> list = new ArrayList<>();
+        list.add(null);
+        list.add(null);
+        System.out.println(list.size());
+    }
 }

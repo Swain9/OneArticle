@@ -218,7 +218,9 @@ public class PatternTest2 {
     @Test
     public void testMatcher8() {
         String value = "CX600-D8";
-        Pattern pattern = Pattern.compile("(?i)^(CX600)((?!-M8).*)$");
+        value = "CX600-M8";
+        //Pattern pattern = Pattern.compile("(?i)^(CX600)((?!-M8).*)$");
+        Pattern pattern = Pattern.compile("(?i)^(CX600)((?!-M8).)*$");
         Matcher matcher = pattern.matcher(value);
         if (matcher.matches()) {
             System.out.println("匹配到了");
