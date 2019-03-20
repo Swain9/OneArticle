@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -117,5 +118,66 @@ public class ListTest {
         list.add(null);
         list.add(null);
         System.out.println(list.size());
+    }
+
+    @Test
+    public void testList(){
+        List<String> a = new ArrayList<>();
+        a.add("a");
+        a.add("b");
+        a.add("c");
+        //a.add("d");
+        List<String> b = new ArrayList<>();
+        b.add("a");
+        b.add("b");
+        b.add("c");
+        b.add("d");
+//        List<String> strings = filterPost(a, b);
+//        System.out.println(strings);
+        boolean b1 = b.removeAll(a);
+        System.out.println(b);
+    }
+
+
+    public List<String> filterPost(List<String> compareList, List<String> saveList) {
+
+        if (compareList == null || compareList.size() == 0) {
+
+            return saveList;
+        }
+        Iterator<String> iterator = saveList.iterator();
+        while (iterator.hasNext()) {
+
+            String port = iterator.next();
+            for (String port2 : compareList) {
+
+                if (port.equals(port2)) {
+
+                    iterator.remove();
+                    break;
+                }
+            }
+        }
+        return saveList;
+    }
+
+    @Test
+    public void testContais(){
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        int z = 0;
+        for (int i = 1; i <= 5; i++) {
+            if (list.contains(i)) {
+                continue;
+            }
+            z = i;
+            System.out.println(i);
+            break;
+        }
+        System.out.println(z);
     }
 }

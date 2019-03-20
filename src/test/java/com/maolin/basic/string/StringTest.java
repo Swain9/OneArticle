@@ -51,4 +51,14 @@ public class StringTest {
 
     }
 
+    @Test
+    public void testIndexOf(){
+        String s = "===脚本参数不全";
+        int i = s.indexOf("===脚本参数不全");
+        int j = s.indexOf("脚本参数不全");
+
+        System.out.println(i);
+        System.out.println(j);
+    }
+
 }
