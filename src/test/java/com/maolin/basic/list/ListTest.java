@@ -1,9 +1,11 @@
 package com.maolin.basic.list;
 
+import com.maolin.entity.ListTestObj;
 import com.maolin.entity.PwInfo;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -11,14 +13,13 @@ import java.util.Set;
 
 /**
  * @author zhangmaolin
- * @date 2018-09-20 19:52
  * @since 0.0.1
  */
 public class ListTest {
 
     @Test
-    public void testNull(){
-        ListTest listTest = new ListTest();
+    public void testNull() {
+        ListTestObj listTest = new ListTestObj();
         List<String> list = listTest.getList();
         for (String s : list) {
             System.out.println(s);
@@ -32,8 +33,9 @@ public class ListTest {
             System.out.println(s);
         }
     }
+
     @Test
-    public void testSet(){
+    public void testSet() {
         Set<String> set = new HashSet<>();
         set.add("你好");
         set.add("zhangmaol");
@@ -113,7 +115,7 @@ public class ListTest {
     }
 
     @Test
-    public void listaddnull(){
+    public void listaddnull() {
         List<String> list = new ArrayList<>();
         list.add(null);
         list.add(null);
@@ -121,7 +123,7 @@ public class ListTest {
     }
 
     @Test
-    public void testList(){
+    public void testList() {
         List<String> a = new ArrayList<>();
         a.add("a");
         a.add("b");
@@ -162,7 +164,7 @@ public class ListTest {
     }
 
     @Test
-    public void testContais(){
+    public void testContais() {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
@@ -179,5 +181,45 @@ public class ListTest {
             break;
         }
         System.out.println(z);
+    }
+
+    @Test
+    public void testDoubleFor() {
+        List<String> checkDuplicates = new ArrayList<>();
+        List<String> list = Arrays.asList("a", "b", "c");
+        for (String a : list) {
+            for (String z : list) {
+                if (a.equals(z)) {
+                    continue;
+                }
+                String az = a + "-" + z;
+                String za = z + "-" + a;
+                if (checkDuplicates.contains(az) || checkDuplicates.contains(za)) {
+                    continue;
+                }
+                checkDuplicates.add(az);
+                checkDuplicates.add(za);
+                System.out.println(a + "-" + z);
+            }
+        }
+    }
+
+
+    /**
+     * 测试是否拥有
+     */
+    @Test
+    public void testHas() {
+        ListTestObj listTest = new ListTestObj();
+        List<PwInfo> pwInfoList = listTest.getPwInfoList();
+        if (pwInfoList == null) {
+            pwInfoList = new ArrayList<>();
+            //很好理解, 如果为null, 那么指针没有指向任何内存空间
+            listTest.setPwInfoList(pwInfoList);
+        }
+        PwInfo pwInfo = new PwInfo("aaa","zzz");
+        pwInfoList.add(pwInfo);
+
+        System.out.println(listTest.toString());
     }
 }

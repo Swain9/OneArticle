@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringTest {
 
@@ -59,6 +61,32 @@ public class StringTest {
 
         System.out.println(i);
         System.out.println(j);
+    }
+
+    @Test
+    public void testSubPort(){
+        String p1 = "gigaethernet1/1/1.99";
+        String p2 = "gigaethernet1/2/1";
+        String p3 = "port-channel16";
+        String p4 = "loopback2";
+        String p5 = "gigaethernet 1/1/1.99";
+
+        System.out.println(changePortName(p1));
+        System.out.println(changePortName(p2));
+        System.out.println(changePortName(p3));
+        System.out.println(changePortName(p4));
+        System.out.println(changePortName(p5));
+    }
+
+    Pattern namePat = Pattern.compile("^(\\S+?)([\\d/.]+)$");
+    private String changePortName(String name) {
+        Matcher matcher = namePat.matcher(name);
+        if (matcher.find()) {
+            String portName = matcher.group(1);
+            String portNum = matcher.group(2);
+            return portName + " " + portNum;
+        }
+        return "";
     }
 
 }
