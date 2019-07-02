@@ -1,7 +1,5 @@
 package com.maolin.basic.pattern;
 
-import com.google.common.collect.Lists;
-import com.maolin.entity.PathEntity;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -11,8 +9,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -106,4 +102,14 @@ public class PatternTest {
        /* PathEntity entity = new PathEntity();
         test(builder.toString(), entity);*/
     }
+
+    @Test
+    public void testReplace(){
+        String s = "$name$, 你好";
+        String replace = s.replace("$name$", "张三");
+        String replace2 = s.replace("$name$", null);
+        System.out.println(replace);
+        System.out.println(replace2);
+    }
+
 }

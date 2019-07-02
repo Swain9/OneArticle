@@ -17,4 +17,14 @@ public class IntegerTest {
 
     }
 
+
+    @Test
+    public void test2(){
+
+        byte a = 127;
+        byte b = 1;
+        byte c = (byte) (a + b);
+        System.out.println(c);
+    }
+
 }
