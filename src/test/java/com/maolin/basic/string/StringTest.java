@@ -89,4 +89,13 @@ public class StringTest {
         return "";
     }
 
+    @Test
+    public void testEndWith(){
+        String name = "广州-A-NRS-NR";
+        if (name.endsWith("NR")) {
+            System.out.println("以NR结尾");
+        }
+
+    }
+
 }
