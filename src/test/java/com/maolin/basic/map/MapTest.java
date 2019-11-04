@@ -17,7 +17,7 @@ import java.util.Map;
 public class MapTest {
 
     @Test
-    public void test1(){
+    public void test1() {
         Map<Integer, String> map = new HashMap<>();
         map.put(1, "aaa");
         map.put(2, "bbb");
@@ -39,4 +39,41 @@ public class MapTest {
         String b = String.valueOf(null);
         System.out.println(b);
     }
+
+    @Test
+    public void test2() {
+        Map<String, Integer> countMap = new HashMap<>();
+        countMap.putIfAbsent("key1", 1);
+        System.out.println(countMap);
+
+        countMap.merge("key1", 1, Integer::sum);
+        System.out.println(countMap);
+
+        countMap.merge("key2", 1, Integer::sum);
+        System.out.println(countMap);
+
+        Integer test1 = countMap.computeIfPresent("key1", (key, value) -> {
+            if (value > 1) {
+                return -1;
+            }
+            return 0;
+        });
+        Integer test2 = countMap.computeIfPresent("key2", (key, value) -> {
+            if (value > 1) {
+                return -1;
+            }
+            return 0;
+        });
+        Integer test3 = countMap.computeIfPresent("key3", (key, value) -> {
+            System.out.println(key + value);
+            if (value > 1) {
+                return -1;
+            }
+            return 0;
+        });
+        System.out.println(test1);
+        System.out.println(test2);
+        System.out.println(test3);
+    }
+
 }
