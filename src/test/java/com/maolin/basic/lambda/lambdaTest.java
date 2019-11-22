@@ -62,4 +62,14 @@ public class lambdaTest {
         }
     }
 
+    @Test
+    public void test2(){
+        List<String> list = new ArrayList<>();
+        list.add("你好，");
+        list.add("我是张三, ");
+        list.add(" 欢迎！");
+        String reduce = list.stream().reduce("", (a, b) -> a + b);
+        System.out.println(reduce);
+    }
+
 }
