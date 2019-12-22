@@ -5,6 +5,7 @@ import com.maolin.util.StringUtils;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -72,4 +73,18 @@ public class lambdaTest {
         System.out.println(reduce);
     }
 
+    @Test
+    public void test3(){
+        List<LambdaBean> collect1 = list.stream()
+                .sorted(Comparator.comparing(LambdaBean::getTimeout,(Comparator.reverseOrder())))
+                .limit(1)
+                .collect(Collectors.toList());
+        System.out.println(collect1);
+
+        List<LambdaBean> collect2 = list.stream()
+                .sorted(Comparator.comparing(LambdaBean::getTimeout))
+                .limit(2)
+                .collect(Collectors.toList());
+        System.out.println(collect2);
+    }
 }
