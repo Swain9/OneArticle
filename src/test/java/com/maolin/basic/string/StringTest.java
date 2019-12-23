@@ -98,4 +98,15 @@ public class StringTest {
 
     }
 
+    @Test
+    public void test(){
+        String a = "你好，张三";
+        String b = "nihao,$NAME$";
+        String name = "李四";
+        String areal = a.replace("$NAME$", name);
+        System.out.println(areal);
+        String breal = b.replace("$NAME$", name);
+        System.out.println(breal);
+    }
+
 }
