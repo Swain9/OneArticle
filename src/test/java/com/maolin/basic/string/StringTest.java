@@ -109,4 +109,23 @@ public class StringTest {
         System.out.println(breal);
     }
 
+    @Test
+    public void test2(){
+        List<String> a = new ArrayList<>();
+        a.add("1");
+        a.add("2");
+        a.add("3");
+        a.add("4");
+        a.add("5");
+        for (int i = 0; i < a.size()-1; i++) {
+            for (int j = i + 1; j < a.size(); j++) {
+                boolean flag = false;
+                if (i == a.size() - 2) {
+                    flag = true;
+                }
+                System.out.println(flag + ":" + i + "-" + j);
+            }
+
+        }
+    }
 }

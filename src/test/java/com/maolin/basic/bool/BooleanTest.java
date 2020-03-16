@@ -17,6 +17,18 @@ import java.util.List;
  */
 public class BooleanTest {
 
+    private Boolean a;
+    private boolean b;
+
+    @Test
+    public void test4(){
+        if (a) {
+            System.out.println(a);
+        }
+        if (b) {
+            System.out.println(b);
+        }
+    }
 
     @Test
     public void test3(){
@@ -57,5 +69,6 @@ public class BooleanTest {
         b = false;
         System.out.println(b);
     }
+
 
 }
