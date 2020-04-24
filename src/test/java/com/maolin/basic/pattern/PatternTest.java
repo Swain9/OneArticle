@@ -118,7 +118,14 @@ public class PatternTest {
     @Test
     public void test2(){
         String name = "JZ-龙川黄石-ATN950B-龙川UH（龙川1007链）";
-        Matcher matcher = huanPat.matcher(name);
+        name = "JZ-街口蓝田(二)-从化UH（R1450环)";
+        name = "(";
+        int start1 = name.lastIndexOf("(");
+        int start2 = name.lastIndexOf("（");
+        int start = Math.max(start1, start2);
+        String subName = name.substring(start);
+
+        Matcher matcher = huanPat.matcher(subName);
         if (matcher.find()) {
             String group = matcher.group(1);
             System.out.println(group);
@@ -130,4 +137,5 @@ public class PatternTest {
             }
         }
     }
+
 }

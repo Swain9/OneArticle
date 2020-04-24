@@ -6,6 +6,7 @@ import com.maolin.util.StringUtils;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -230,4 +231,10 @@ public class lambdaTest {
     }
 
 
+
+    @Test
+    public void arraysTest(){
+        String a = "a";
+        //Arrays.stream(a);
+    }
 }
