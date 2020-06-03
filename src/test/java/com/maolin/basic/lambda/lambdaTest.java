@@ -23,16 +23,19 @@ public class lambdaTest {
 
     private List<LambdaBean> list = new ArrayList<LambdaBean>() {
         {
-            add(new LambdaBean("check1","huawei","model1",100));
-            add(new LambdaBean("check2","zhongxing","model2",300));
-            add(new LambdaBean("check3","fenghuo","model3",400));
-            add(new LambdaBean("check4","fenghuo",null,500));
-            add(new LambdaBean("check4","fenghuo","model3",600));
+            add(new LambdaBean("check1", "huawei", "model1", 100));
+            add(new LambdaBean("check2", "zhongxing", "model2", 300));
+            add(new LambdaBean("check3", "fenghuo", "model3", 400));
+            add(new LambdaBean("check4", "fenghuo", null, 500));
+            add(new LambdaBean("check4", "fenghuo", "model3", 600));
         }
     };
 
     @Test
-    public void test0(){
+    public void test0() {
+        long a = 100L;
+        int b = (int) a + 2;
+
         String ifName = "check4";
         String manufacturer = "fenghuo";
         List<LambdaBean> collect = list.stream()
@@ -42,7 +45,7 @@ public class lambdaTest {
     }
 
     @Test
-    public void test1(){
+    public void test1() {
         String ifName = "check4";
         String manufacturer = "fenghuo";
         String model = "model3";
@@ -58,13 +61,13 @@ public class lambdaTest {
                 .findFirst();
         if (first.isPresent()) {
             System.out.println(first.get().getTimeout());
-        }else {
+        } else {
             System.out.println("不存在");
         }
     }
 
     @Test
-    public void test2(){
+    public void test2() {
         List<String> list = new ArrayList<>();
         list.add("你好，");
         list.add("我是张三, ");
@@ -74,9 +77,9 @@ public class lambdaTest {
     }
 
     @Test
-    public void test3(){
+    public void test3() {
         List<LambdaBean> collect1 = list.stream()
-                .sorted(Comparator.comparing(LambdaBean::getTimeout,(Comparator.reverseOrder())))
+                .sorted(Comparator.comparing(LambdaBean::getTimeout, (Comparator.reverseOrder())))
                 .limit(1)
                 .collect(Collectors.toList());
         System.out.println(collect1);
