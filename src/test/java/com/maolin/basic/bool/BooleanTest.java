@@ -17,6 +17,37 @@ import java.util.List;
  */
 public class BooleanTest {
 
+    private Boolean a;
+    private boolean b;
+
+
+    /**
+     * https://cloud.tencent.com/developer/article/1338265
+     * https://cloud.tencent.com/developer/article/1336599
+     */
+    @Test
+    public void test5(){
+        boolean a = true;
+        boolean b = false;
+
+        System.out.println(a && b);
+        System.out.println(a || b);
+        System.out.println(a & b);
+        System.out.println(b & a);
+        System.out.println(a | b);
+        System.out.println(b | a);
+        System.out.println(a ^ b);
+    }
+
+    @Test
+    public void test4(){
+        if (a) {
+            System.out.println(a);
+        }
+        if (b) {
+            System.out.println(b);
+        }
+    }
 
     @Test
     public void test3(){
@@ -57,5 +88,6 @@ public class BooleanTest {
         b = false;
         System.out.println(b);
     }
+
 
 }

@@ -247,6 +247,48 @@ public class PatternTest2 {
             System.out.println("已完成");
         }
     }
+    private Pattern areaIdPat = Pattern.compile("^\\d*$");
+    @Test
+    public void testMatcher10(){
+        String a = "323";
+        String b = "a32";
+        if (a.matches("\\d*")) {
+            System.out.println(a);
+        }
+        if(b.matches("\\d*")){
+            System.out.println(b);
+        }
+        System.out.println("=");
+        if (areaIdPat.matcher(a).matches()) {
+            System.out.println(a);
+        }
+        if (areaIdPat.matcher(b).matches()) {
+            System.out.println(b);
+        }
+    }
+
+
+    /**
+     * 中文 正则 校验
+     */
+    @Test
+    public void testMatcher11(){
+        Pattern pattern = Pattern.compile("[\u4e00-\u9fa5]");
+        String a = "张三你好sadfjij";
+        a = "asdf-jdjj漷jj";
+        String b = "R032-YouDianTongXinDong";
+
+
+        Matcher matcher = pattern.matcher(a);
+        if (matcher.find()) {
+            System.out.println(a);
+        }
+
+        Matcher matcher1 = pattern.matcher(b);
+        if (!matcher1.find()) {
+            System.out.println(b);
+        }
+    }
 
 }
 
