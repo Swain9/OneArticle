@@ -16,8 +16,9 @@ public class StringTest {
         System.out.println(substring);
 
     }
+
     @Test
-    public void testSubString2(){
+    public void testSubString2() {
         String ss = "nihao zhangmaolin";
         String sub = ss.substring(0, ss.lastIndexOf(" "));
         System.out.println(sub);
@@ -46,7 +47,7 @@ public class StringTest {
     }
 
     @Test
-    public void testEquelt(){
+    public void testEquelt() {
         String a = "#";
         String b = "#";
         System.out.println(a.equals(b));
@@ -54,7 +55,7 @@ public class StringTest {
     }
 
     @Test
-    public void testIndexOf(){
+    public void testIndexOf() {
         String s = "===脚本参数不全";
         int i = s.indexOf("===脚本参数不全");
         int j = s.indexOf("脚本参数不全");
@@ -64,7 +65,7 @@ public class StringTest {
     }
 
     @Test
-    public void testSubPort(){
+    public void testSubPort() {
         String p1 = "gigaethernet1/1/1.99";
         String p2 = "gigaethernet1/2/1";
         String p3 = "port-channel16";
@@ -79,6 +80,7 @@ public class StringTest {
     }
 
     Pattern namePat = Pattern.compile("^(\\S+?)([\\d/.]+)$");
+
     private String changePortName(String name) {
         Matcher matcher = namePat.matcher(name);
         if (matcher.find()) {
@@ -90,7 +92,7 @@ public class StringTest {
     }
 
     @Test
-    public void testEndWith(){
+    public void testEndWith() {
         String name = "广州-A-NRS-NR";
         if (name.endsWith("NR")) {
             System.out.println("以NR结尾");
@@ -99,7 +101,7 @@ public class StringTest {
     }
 
     @Test
-    public void test(){
+    public void test() {
         String a = "你好，张三";
         String b = "nihao,$NAME$";
         String name = "李四";
@@ -110,14 +112,14 @@ public class StringTest {
     }
 
     @Test
-    public void test2(){
+    public void test2() {
         List<String> a = new ArrayList<>();
         a.add("1");
         a.add("2");
         a.add("3");
         a.add("4");
         a.add("5");
-        for (int i = 0; i < a.size()-1; i++) {
+        for (int i = 0; i < a.size() - 1; i++) {
             for (int j = i + 1; j < a.size(); j++) {
                 boolean flag = false;
                 if (i == a.size() - 2) {
@@ -129,4 +131,88 @@ public class StringTest {
         }
     }
 
+    @Test
+    public void test3() {
+        String a = "1.1.1.1";
+        String b = "255.255.255.255";
+        System.out.println(strAppendStr(a, 16) + ":");
+        System.out.println(strAppendStr(b, 16) + ":");
+    }
+
+    /**
+     * https://segmentfault.com/a/1190000019350486?utm_source=tag-newest
+     *
+     * @param str
+     * @return
+     */
+    public static String strAppendStr(String str, int length) {
+        String format = "%-" + length + "s";
+//        return String.format("%-12s", str);
+        return String.format(format, str);
+    }
+
+    /**
+     * 设置字符长度  不足者 右侧添加 指定字符
+     *
+     * @param str1  元字符
+     * @param lenth 指定长度
+     * @param st2   指定字符
+     * @return
+     * @throws Exception
+     */
+    public static String strAppendStr(String str1, int lenth, String st2) throws Exception {
+        StringBuilder strb1 = new StringBuilder(str1);
+        lenth = lenth - getChineseLength(str1, "utf-8");
+        while (lenth >= 0) {
+            lenth--;
+            strb1.append(st2);
+        }
+        return strb1.toString();
+    }
+
+    /**
+     * 计算中文字符长度
+     *
+     * @param name      字符
+     * @param endcoding 编码方式
+     * @return
+     * @throws Exception
+     */
+    public static int getChineseLength(String name, String endcoding) throws Exception {
+        int len = 0; //定义返回的字符串长度
+        int j = 0;
+        //按照指定编码得到byte[]
+        byte[] b_name = name.getBytes(endcoding);
+        do {
+            short tmpst = (short) (b_name[j] & 0xF0);
+            if (tmpst >= 0xB0) {
+                if (tmpst < 0xC0) {
+                    j += 2;
+                    len += 2;
+                } else if ((tmpst == 0xC0) || (tmpst == 0xD0)) {
+                    j += 2;
+                    len += 2;
+                } else if (tmpst == 0xE0) {
+                    j += 3;
+                    len += 2;
+                } else {
+                    short tmpst0 = (short) (((short) b_name[j]) & 0x0F);
+                    if (tmpst0 == 0) {
+                        j += 4;
+                        len += 2;
+                    } else if (tmpst0 < 12) {
+                        j += 5;
+                        len += 2;
+                    } else {
+                        j += 6;
+                        len += 2;
+                    }
+                }
+            } else {
+                j += 1;
+                len += 1;
+            }
+        } while (j <= b_name.length - 1);
+        return len;
+    }
 }
