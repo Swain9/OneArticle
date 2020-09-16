@@ -1,7 +1,9 @@
 package com.maolin.basic.string;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -215,4 +217,19 @@ public class StringTest {
         } while (j <= b_name.length - 1);
         return len;
     }
+
+    @Test
+    public void testName(){
+        String name = "文若";
+        byte[] bytes = name.getBytes(StandardCharsets.UTF_8);
+        System.out.println(bytes);
+    }
+
+    @Test
+    public void testSub(){
+        String url = "192.168.110.10:9900,";
+        String[] split = StringUtils.split(url, ",");
+        System.out.println(split);
+    }
+
 }

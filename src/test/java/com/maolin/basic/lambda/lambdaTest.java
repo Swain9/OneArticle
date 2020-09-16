@@ -3,10 +3,10 @@ package com.maolin.basic.lambda;
 import com.maolin.entity.Product;
 import com.maolin.lambda.LambdaBean;
 import com.maolin.util.StringUtils;
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -231,10 +231,80 @@ public class lambdaTest {
     }
 
 
-
     @Test
-    public void arraysTest(){
+    public void arraysTest() {
         String a = "a";
         //Arrays.stream(a);
     }
+
+
+    @Test
+    public void test() {
+
+        UserInfo u1 = new UserInfo();
+        u1.setId("1");
+        u1.setName("张三");
+
+        UserInfo u2 = new UserInfo();
+        u2.setId("2");
+        u2.setName("李四");
+
+        UserInfo u3 = new UserInfo();
+        u3.setId("3");
+        u3.setName("王五");
+
+        UserInfo u4 = new UserInfo();
+        u4.setId("4");
+        u4.setName("刘麻子");
+
+        UserDetail d1 = new UserDetail();
+        d1.setId("1");
+        d1.setNum("20");
+
+        UserDetail d2 = new UserDetail();
+        d2.setId("2");
+        d2.setNum("20");
+
+        UserDetail d3 = new UserDetail();
+        d3.setId("3");
+        d3.setNum("30");
+
+        UserDetail d4 = new UserDetail();
+        d4.setId("4");
+        d4.setNum("30");
+
+        List<UserInfo> userInfoList = new ArrayList<>();
+        userInfoList.add(u1);
+        userInfoList.add(u2);
+        userInfoList.add(u3);
+        userInfoList.add(u4);
+
+        List<UserDetail> userDetailList = new ArrayList<>();
+        userDetailList.add(d1);
+        userDetailList.add(d2);
+        userDetailList.add(d3);
+        userDetailList.add(d4);
+
+        Map<String, List<UserInfo>> collect = userInfoList.stream()
+                .collect(Collectors.groupingBy(userInfo -> {
+                    String uid = userInfo.getId();
+                    return userDetailList.stream().filter(userDetail -> {
+                        String did = userDetail.getId();
+                        return uid.equals(did);
+                    }).findFirst().get().getNum();
+                }));
+        System.out.println(collect);
+    }
+}
+
+@Data
+class UserInfo {
+    private String id;
+    private String name;
+}
+
+@Data
+class UserDetail {
+    private String id;
+    private String num;
 }

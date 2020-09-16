@@ -113,13 +113,13 @@ public class PatternTest {
     }
 
     private static final Pattern huanPat = Pattern.compile("[(（]+(\\S+)[）)]+");
-    private static final Pattern huanNamePat = Pattern.compile("[A-Za-z0-9]+");
+    private static final Pattern huanNamePat = Pattern.compile("[A-Za-z0-9-]+");
 
     @Test
     public void test2(){
         String name = "JZ-龙川黄石-ATN950B-龙川UH（龙川1007链）";
-        name = "JZ-街口蓝田(二)-从化UH（R1450环)";
-        name = "(";
+        name = "JZ-街口蓝田(二)-从化UH（R1450-2环)";
+        //name = "(";
         int start1 = name.lastIndexOf("(");
         int start2 = name.lastIndexOf("（");
         int start = Math.max(start1, start2);

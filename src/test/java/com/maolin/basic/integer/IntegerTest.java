@@ -18,7 +18,6 @@ public class IntegerTest {
         int i = 1;
         int b = ++i;
         System.out.println(b);
-
     }
 
 
@@ -95,7 +94,8 @@ public class IntegerTest {
 
     @Test
     public void test7(){
-        long a = 0xfffffffffffffc00L;
+        int s = 3400;
+        long a = s & 0xfffffffffffffc00L;
 //        long x = ((a << 19) << 19) << 6;
         long a1 = a << 19;
         long a2 = a1 << 19;
