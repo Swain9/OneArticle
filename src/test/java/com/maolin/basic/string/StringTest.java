@@ -231,5 +231,10 @@ public class StringTest {
         String[] split = StringUtils.split(url, ",");
         System.out.println(split);
     }
-
+    @Test
+    public void testSub2(){
+        String s = "10.24.140.31,10.24.140.53,10.24.140.59,";
+        String[] split = StringUtils.split(s, ",");
+        System.out.println(split.length);
+    }
 }

@@ -3,7 +3,9 @@ package com.maolin.basic.pattern;
 import org.junit.Test;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -243,19 +245,21 @@ public class PatternTest2 {
         Matcher endMacher = endTime.matcher(value);
         if (endMacher.find()) {
             System.out.println("未完成");
-        }else{
+        } else {
             System.out.println("已完成");
         }
     }
+
     private Pattern areaIdPat = Pattern.compile("^\\d*$");
+
     @Test
-    public void testMatcher10(){
+    public void testMatcher10() {
         String a = "323";
         String b = "a32";
         if (a.matches("\\d*")) {
             System.out.println(a);
         }
-        if(b.matches("\\d*")){
+        if (b.matches("\\d*")) {
             System.out.println(b);
         }
         System.out.println("=");
@@ -272,7 +276,7 @@ public class PatternTest2 {
      * 中文 正则 校验
      */
     @Test
-    public void testMatcher11(){
+    public void testMatcher11() {
         Pattern pattern = Pattern.compile("[\u4e00-\u9fa5]");
         String a = "张三你好sadfjij";
         a = "asdf-jdjj漷jj";
@@ -290,6 +294,41 @@ public class PatternTest2 {
         }
     }
 
+    /**
+     * 在使用正则表达式的时候，我们经常会使用()把某个部分括起来，称为一个子模式。
+     * 子模式有Capturing和Non-Capturing两种情况。
+     * Capturing指获取匹配 ，是指系统会在幕后将所有的子模式匹配结果保存起来，供我们查找或者替换。如后向引用的使用；
+     * 而Non-Capturing指非获取匹配 ，这时系统并不会保存子模式的匹配结果，子模式的匹配更多的只是作为一种限制条件使用，如正向预查，反向预查，负正向预查，负反向预查等。
+     * https://www.jianshu.com/p/8bf162425d83
+     */
+    @Test
+    public void test13() {
+        String loopbackIp = null;
+        Pattern loopbackPortPat = Pattern.compile("(?i)^loopback");
+        Pattern loopbackPortPat2 = Pattern.compile("Loop\\S+");
+        Map<String, String> treeMap = new TreeMap<>();
+        String name = "dloopback1023";
+
+        Matcher matcher = loopbackPortPat.matcher(name);
+        if (matcher.find()) {
+            System.out.println(name);
+        }else{
+            matcher = loopbackPortPat2.matcher(name);
+            if (matcher.find()) {
+                System.out.println(name);
+            }
+        }
+    }
+    private static final Pattern portPat = Pattern.compile("(\\S+)\\(\\S+\\)");
+    @Test
+    public void test14(){
+        String name = "GigabitEthernet1/0/25";
+        Matcher matcher = portPat.matcher(name);
+        if (matcher.find()) {
+            String group = matcher.group(1);
+            System.out.println(group);
+        }
+    }
 }
 
 

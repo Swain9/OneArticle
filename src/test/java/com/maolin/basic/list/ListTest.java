@@ -222,4 +222,23 @@ public class ListTest {
 
         System.out.println(listTest.toString());
     }
+
+    @Test
+    public void testIter(){
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        Iterator<Integer> iterator = list.iterator();
+
+        for (int i = 0; i< 3; i++) {
+            if (iterator.hasNext()) {
+                Integer next = iterator.next();
+                iterator.remove();
+            }
+        }
+        System.out.println(list);
+    }
 }
