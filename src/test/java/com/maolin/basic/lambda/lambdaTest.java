@@ -9,9 +9,11 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -295,6 +297,56 @@ public class lambdaTest {
                 }));
         System.out.println(collect);
     }
+
+    @Test
+    public void testSort(){
+        Set<String> s1 = new HashSet<>();
+        s1.add("1");
+        s1.add("3");
+        s1.add("5");
+        s1.add("6");
+        Set<String> s2 = new HashSet<>();
+        s2.add("2");
+        s2.add("4");
+        s2.add("6");
+        s2.add("8");
+        Set<String> s3 = new HashSet<>();
+        s3.add("11");
+        Set<String> s4 = new HashSet<>();
+        s4.add("12");
+        s4.add("22");
+        Set<String> s5 = new HashSet<>();
+        s5.add("13");
+        s5.add("23");
+        s5.add("33");
+        List<Set<String>> setList = new ArrayList<>();
+        setList.add(s1);
+        setList.add(s2);
+        setList.add(s3);
+        setList.add(s4);
+        setList.add(s5);
+
+        List<Set<String>> collect = setList.stream()
+                .sorted((o1, o2) -> {
+                    if (o1.size() == o2.size()) {
+
+                        String o1Min = o1.stream().sorted().findFirst().orElse("0");
+                        String o2Min = o2.stream().sorted().findFirst().orElse("0");
+                        return Integer.parseInt(o1Min) - Integer.parseInt(o2Min);
+                    }
+                    return o1.size() - o2.size();
+                }).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    @Test
+    public void testNull(){
+        List<String> a = new ArrayList<>();
+        String collect = a.stream().map(s -> s)
+                .collect(Collectors.joining(";"));
+        System.out.println(collect);
+    }
+
 }
 
 @Data

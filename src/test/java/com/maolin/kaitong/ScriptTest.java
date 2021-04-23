@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -131,7 +132,7 @@ public class ScriptTest {
     }
 
     @Test
-    public void test5(){
+    public void test5() {
         String script = getScript("src/test/resources/script.txt");
         List<Map<String, Object>> upe = new ArrayList<>();
         Map<String, Object> upeScript1 = new HashMap<>();
@@ -164,6 +165,74 @@ public class ScriptTest {
 
         exeScript(script, "getScript", upe);
     }
+
+
+    @Test
+    public void test6() throws ScriptException, NoSuchMethodException {
+        String script = getScript("src/test/resources/script4.txt");
+        ScriptEngine engine = manager.getEngineByName("js");
+
+
+        Boolean s = true;
+        Boolean s2 = false;
+
+        Map<String, String> map = new HashMap<>();
+        map.put("cross", s.toString());
+        map.put("hasVlan", s2.toString());
+        // 破案了， 原来的datanet代码会转换String类型的且实际类型为boolean的数据
+        Map<String, Object> paramsMap = new HashMap<>();
+        paramsMap.putAll(map);
+
+        engine.eval(script);
+        //Object value = engine.get("SCRIPT");
+        if (engine instanceof Invocable) {
+            Invocable invocable = (Invocable) engine;
+            Object value = invocable.invokeFunction("getScript", paramsMap);
+            System.out.println(value);
+        }
+    }
+
+    @Test
+    public void test7() throws ScriptException {
+
+        String script = getScript("src/test/resources/script4.txt");
+        CountDownLatch count = new CountDownLatch(2);
+        Runnable r1 = () -> {
+            ScriptEngine engine = manager.getEngineByName("js");
+            try {
+                engine.put("cross", "true");
+                engine.eval(script);
+            } catch (ScriptException e) {
+                System.out.println(e.getMessage());
+            }
+            Object value = engine.get("SCRIPT");
+            System.out.println(value);
+            count.countDown();
+        };
+        Runnable r2 = () -> {
+            ScriptEngine engine = manager.getEngineByName("js");
+            try {
+                Thread.sleep(1000);
+                engine.put("hasVlan", "false");
+                engine.eval(script);
+            } catch (ScriptException | InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+            Object value = engine.get("SCRIPT");
+            System.out.println(value);
+            count.countDown();
+        };
+        new Thread(r1).start();
+        new Thread(r2).start();
+
+        try {
+            count.await();
+            System.out.println("");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     class ScriptBeanIn {
         private String name;

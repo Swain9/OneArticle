@@ -329,6 +329,31 @@ public class PatternTest2 {
             System.out.println(group);
         }
     }
+    public static final Pattern ADAPTER_BGP_TABLE_PATTERN = Pattern.compile("([\\d\\.]+) +(\\d+) +(\\d+) +(\\d+) +(\\d+)");
+
+    @Test
+    public void test15(){
+        String s = "BGP local router ID : 10.26.150.29\n" +
+                " Local AS number : 65414\n" +
+                " Total number of peers : 2                 Peers in established state : 2\n" +
+                "  Peer            V          AS  MsgRcvd  MsgSent  OutQ  Up/Down       State  PrefRcv\n" +
+                "  10.24.153.76    4       65414   281674   277339     0 4026h29m Established        4\n" +
+                "  10.24.153.77    4       65414   233904   230399     0 3344h27m Established        4";
+
+       /* s = "BGP router ID  : 10.25.177.64\n" +
+                "Local AS       : 65413\n" +
+                "All peers      : 2\n" +
+                "  Established  : 2\n" +
+                "All prefixes   : 6\n" +
+                "Neighbor        Ver As          MsgRcvd    MsgSend    Up/Down      State/PfxRcd\n" +
+                "10.24.136.58    4   65413       22468      22269      1w6d             3       \n" +
+                "10.24.136.59    4   65413       22454      22326      1w6d             3      ";*/
+        Matcher matcher = ADAPTER_BGP_TABLE_PATTERN.matcher(s);
+        while (matcher.find()) {
+            String ip = matcher.group(1);
+            System.out.println(ip);
+        }
+    }
 }
 
 

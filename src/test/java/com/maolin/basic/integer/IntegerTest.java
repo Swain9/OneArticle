@@ -105,4 +105,15 @@ public class IntegerTest {
         System.out.println(Long.toHexString(x));
         System.out.println(Long.toBinaryString(x).length());
     }
+
+    @Test
+    public void test8(){
+        Integer i = 2;
+        processInt(i);
+        System.out.println(i);
+    }
+
+    private void processInt(Integer i) {
+        i = 4;
+    }
 }

@@ -1,0 +1,14 @@
+<JavaScript>
+function getScript(paramMap){
+    var SCRIPT = '';
+    var COMMANDS = new Array();
+    if(hasVlan){
+        COMMANDS.push('vlan-type dot1q $VLAN$');
+    }
+    if(cross){
+        COMMANDS.push('cross');
+    }
+    SCRIPT = COMMANDS.join('\r\n');
+    return SCRIPT;
+}
+</JavaScript>
