@@ -83,6 +83,6 @@ public class DateTimeUtilTest {
         int days = Period.between(time1.toLocalDate(), time2.toLocalDate()).getDays();
         System.out.println(days);
 
-        time3.getDayOfYear()
+        time3.getDayOfYear();
     }
 }
