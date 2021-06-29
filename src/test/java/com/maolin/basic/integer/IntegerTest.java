@@ -116,4 +116,10 @@ public class IntegerTest {
     private void processInt(Integer i) {
         i = 4;
     }
+
+    @Test
+    public void test9(){
+        Integer integer = Integer.valueOf("0110");
+        System.out.println(integer);
+    }
 }

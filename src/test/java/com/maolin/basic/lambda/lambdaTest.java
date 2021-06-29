@@ -345,6 +345,24 @@ public class lambdaTest {
         String collect = a.stream().map(s -> s)
                 .collect(Collectors.joining(";"));
         System.out.println(collect);
+        List<String> b = a.stream().map(s -> s)
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", b));
+    }
+
+    @Test
+    public void testMerge(){
+        String s = "nihao";
+        Map<String, Integer> countMap = new HashMap<>();
+
+        //countMap.put(s, 1);
+
+        Integer count = countMap.merge(s, 1, Integer::sum);
+        System.out.println(count);
+        count = countMap.merge(s, 1, Integer::sum);
+        System.out.println(count);
+        count = countMap.merge(s, 1, Integer::sum);
+        System.out.println(count);
     }
 
 }
